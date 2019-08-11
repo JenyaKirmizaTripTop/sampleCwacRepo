@@ -16,6 +16,7 @@
 
 package com.jenyakirmiza.myapplication
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 
@@ -24,6 +25,6 @@ import androidx.room.Query
 interface SampleTableDao {
 
     @Query("SELECT * FROM call_history")
-    fun getItemsBlocking(): List<SampleTableEntity>
+    fun getItemsBlocking(): LiveData<SampleTableEntity>
 
 }

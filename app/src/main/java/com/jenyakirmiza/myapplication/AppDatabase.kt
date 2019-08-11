@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.commonsware.cwac.saferoom.SafeHelperFactory
 
 /**
@@ -28,18 +27,11 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): AppDatabase {
-            val factory = SafeHelperFactory("asd23qwe1".toByteArray(Charsets.UTF_8), null as String?)
+            val factory = SafeHelperFactory("asd23qwe1".toByteArray(Charsets.UTF_8))
 
             val db = Room.databaseBuilder(context, AppDatabase::class.java, "sample-db")
                 .openHelperFactory(factory)
-                .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
-                .addCallback(object : RoomDatabase.Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db)
-                        //TODO in case we want to insert some data on database creation stage
-                    }
-                })
                 .build()
 
             return db

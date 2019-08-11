@@ -1,10 +1,10 @@
 package com.jenyakirmiza.myapplication
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +14,9 @@ class MainActivity : AppCompatActivity() {
 
 
         val items = AppDatabase.getInstance(applicationContext).sampleDao().getItemsBlocking()
-        Log.d("items_size", items.size.toString())
+        items.observe(this, Observer {
+            val i=0
+        })
 
     }
 
