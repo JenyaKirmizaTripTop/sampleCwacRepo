@@ -27,7 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): AppDatabase {
-            val factory = SafeHelperFactory("asd23qwe1".toByteArray(Charsets.UTF_8))
+            val factory = SafeHelperFactory("asd23qwe1".toCharArray())
 
             val db = Room.databaseBuilder(context, AppDatabase::class.java, "sample-db")
                 .openHelperFactory(factory)
